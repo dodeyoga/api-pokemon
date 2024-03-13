@@ -1,0 +1,22 @@
+version: "3"
+services:
+    db:
+        container_name: mydb
+        image: mysql:latest
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        networks:
+            - pokemon
+    app:
+        container_name: myapp
+        networks:
+            - pokemon
+        build: ./
+        ports:
+            - "5001:5000"
+networks:
+    pokemon:
+        driver: bridge
+    
